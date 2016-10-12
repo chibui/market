@@ -17,8 +17,18 @@
   </div>
 
   <div class="field">
+    <%= f.label :email %><br>
+    <%= f.text_field :email %>
+  </div>
+
+  <div class="field">
     <%= f.label :role_id %>
-    <%= f.text_field :role_id %>
+    <%= collection_select(:user, :role_id, Role.all, :id, :name, {prompt: true}) %>
+  </div>
+
+  <div class="field">
+    <%= f.label :password %><br>
+    <%= f.password_field :password, placeholder: "Leave blank if unchanged" %>
   </div>
 
   <div class="actions">

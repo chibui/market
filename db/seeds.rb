@@ -5,3 +5,20 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+Role.delete_all
+User.delete_all
+Item.delete_all
+
+r1 = Role.create({name: "Regular", description: "Can read items"})
+r2 = Role.create({name: "Seller", description: "Can read and create items. Can update and destroy own items"})
+r3 = Role.create({name: "Admin", description: "Can perform any CRUD operation on any resource"})
+
+u1 = User.create({name: "Sally", email: "sally@example.com", password: "123456", password_confirmation: "123456", role_id: r1.id})
+u2 = User.create({name: "Sue", email: "sue@example.com", password: "123456", password_confirmation: "123456", role_id: r2.id})
+u3 = User.create({name: "Kev", email: "kev@example.com", password: "123456", password_confirmation: "123456", role_id: r2.id})
+u4 = User.create({name: "chi", email: "chi@example.com", password: "123456", password_confirmation: "123456", role_id: r3.id})
+
+i1 = Item.create({name: "Apple", description: "Delicious granny smith apple", origin: "sydney", min_order: 1, price: 3.99, user_id: u2.id})
+i2 = Item.create({name: "Banana", description: "Sweet lady finger banana", origin: "melbourne", min_order: 1, price: 2.99, user_id: u2.id})
+i3 = Item.create({name: "Orange", description: "Navel Orange", origin: "gold coast", min_order: 1, price: 9.99, user_id: u3.id})
+i4 = Item.create({name: "Pineapple", description: "Super Pineapple", origin: "perth", min_order: 1, price: 19.99, user_id: u3.id})
