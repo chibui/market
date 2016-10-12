@@ -1,6 +1,7 @@
 class ItemsController < ApplicationController
   before_filter :authenticate_user!
-  before_action :set_item, only: [:show, :edit, :update, :destroy]
+  # Method to load resource to authorize actions
+  load_and_authorize_resource
 
   # GET /items
   # GET /items.json
@@ -15,7 +16,6 @@ class ItemsController < ApplicationController
 
   # GET /items/new
   def new
-    @item = Item.new
   end
 
   # GET /items/1/edit
@@ -25,9 +25,6 @@ class ItemsController < ApplicationController
   # POST /items
   # POST /items.json
   def create
-    @item = Item.new(item_params)
-    @item.user_id = current_user.id
-
     respond_to do |format|
       if @item.save
         format.html { redirect_to @item, notice: 'Item was successfully created.' }
@@ -64,11 +61,6 @@ class ItemsController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_item
-      @item = Item.find(params[:id])
-    end
-
     # Never trust parameters from the scary internet, only allow the white list through.
     def item_params
       params.require(:item).permit(:name, :description, :origin, :min_order, :price, :user_id)

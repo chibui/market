@@ -16,6 +16,8 @@ gem 'coffee-rails', '~> 4.2'
 # See https://github.com/rails/execjs#readme for more supported runtimes
 # gem 'therubyracer', platforms: :ruby
 
+# Use cancancan for user authorization
+gem 'cancancan', '~> 1.10'
 # Use devise for user authentication
 gem 'devise'
 # Use jquery as the JavaScript library
