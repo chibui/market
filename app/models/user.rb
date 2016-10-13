@@ -7,6 +7,7 @@ class User < ApplicationRecord
   has_many :items, :dependent => :destroy
   validates :name, :email, presence: true
   before_save :assign_role
+  
 
     def assign_role
       self.role = Role.find_by name: "Regular" if self.role.nil?
@@ -19,7 +20,7 @@ class User < ApplicationRecord
     def seller?
       self.role.name == "Seller"
     end
-    
+
     def regular?
       self.role.name == "Regular"
     end
