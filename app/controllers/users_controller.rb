@@ -4,13 +4,13 @@ class UsersController < ApplicationController
   load_and_authorize_resource
 
   def user_params
-    params.require(:user).permit(:email, :password, :password_confirmation, :name, :role_id)
+    params.require(:user).permit(:email, :password, :password_confirmation, :name, :role_id, :contact, :phone, :address, :abn, :bio)
   end
   # GET /users
   # GET /users.json
   def index
     @users = User.all
-  
+
   end
 
   # GET /users/1
@@ -88,7 +88,7 @@ class UsersController < ApplicationController
   private
     # Never trust parameters from the scary internet, only allow the white list through.
     def user_params
-      params.require(:user).permit(:email, :password, :password_confirmation, :name, :role_id)
+      params.require(:user).permit(:email, :password, :password_confirmation, :name, :role_id, :tos_status, :contact, :phone, :address, :abn, :bio)
     end
 
     # Check if asking for password

@@ -2,9 +2,8 @@
 
 <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
   <%= devise_error_messages! %>
-
   <div class="field">
-    <%= f.label :name %><br />
+    <%= f.label "Business Name" %><br />
     <%= f.text_field :name %>
   </div>
 
@@ -25,6 +24,36 @@
     <%= f.label :password_confirmation %><br />
     <%= f.password_field :password_confirmation, autocomplete: "off" %>
   </div>
+
+  <div class="field">
+    <%= f.label "Contact Name" %><br />
+    <%= f.text_field :contact %>
+  </div>
+
+  <div class="field">
+    <%= f.label :phone %><br />
+    <%= f.text_field :phone %>
+  </div>
+
+  <div class="field">
+    <%= f.label :address %><br />
+    <%= f.text_field :address %>
+  </div>
+
+  <div class="field">
+    <%= f.label :abn %><br />
+    <%= f.text_field :abn %>
+  </div>
+
+  <div class="field">
+    <%= f.label :About %><br />
+    <%= f.text_field :bio %>
+  </div>
+
+  <%= f.check_box :tos_status %>
+      <%= f.label :tos_status, "I agree to the " %>
+      <!-- Opens TOS page in new tab -->
+      <%= link_to "Terms of Service", legal_tos_url , target:'_blank'%>
 
   <div class="actions">
     <%= f.submit "Sign up" %>

@@ -1,4 +1,5 @@
 class CartsController < ApplicationController
+  before_action :authenticate_user!
   before_action :set_cart, only: [:show, :edit, :update, :destroy]
   # Catch when attempting to access invalid cart, cart_id param removed from LineItemsController for security
   rescue_from ActiveRecord::RecordNotFound, with: :invalid_cart

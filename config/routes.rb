@@ -2,6 +2,7 @@ Rails.application.routes.draw do
   resources :line_items
   resources :carts
   get 'store/index'
+  get 'legal/tos'
 
   devise_for :users
   scope "/admin" do
