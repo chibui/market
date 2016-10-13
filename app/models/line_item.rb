@@ -1,5 +1,6 @@
 class LineItem < ApplicationRecord
-  belongs_to :item
+  belongs_to :order, optional: true
+  belongs_to :item, optional: true
   belongs_to :cart
 
   def total_price
