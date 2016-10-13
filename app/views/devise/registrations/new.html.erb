@@ -13,13 +13,6 @@
     <%= f.email_field :email, autofocus: true %>
   </div>
 
-  <%= f.collection_select :role_id, Role.order(:regular),:regular,:seller %>
-  <%= f.select :role_id, ['regular', 'seller'] %>
-  <select class="role_id" name="role_id">
-    <option value="regular">Buyer</option>
-    <option value="seller">Seller</option>
-  </select>
-
   <div class="field">
     <%= f.label :password %>
     <% if @minimum_password_length %>

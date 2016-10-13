@@ -35,8 +35,7 @@
     <%= f.label :price %>
     <%= f.text_field :price %>
   </div>
-
-
+  <%= f.hidden_field :user_id, :value => user_session %>
 
   <div class="actions">
     <%= f.submit %>

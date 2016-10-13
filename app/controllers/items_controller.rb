@@ -1,5 +1,5 @@
 class ItemsController < ApplicationController
-  before_filter :authenticate_user!
+  before_action :authenticate_user!
   # Method to load resource to authorize actions
   load_and_authorize_resource
 
@@ -25,6 +25,8 @@ class ItemsController < ApplicationController
   # POST /items
   # POST /items.json
   def create
+    @item = Item.new(item_params)
+    @item.user_id = current_user.id if current_user
     respond_to do |format|
       if @item.save
         format.html { redirect_to @item, notice: 'Item was successfully created.' }
