@@ -1,19 +1,37 @@
-
 <p id="notice"><%= notice %></p>
+<div class="container">
+  <div class="row">
+    <div class="col-sm-8">
+      <h1>Market</h1>
 
-<h1>Market</h1>
+      <% cache @items do %>  <!-- caching at store level -->
+        <% @items.each do |item| %>
+          <% cache item do %> <!-- caching at item level -->
 
-<% cache @items do %>  <!-- caching at store level -->
-  <% @items.each do |item| %>
-    <% cache item do %> <!-- caching at item level -->
-      <div class="entry">
-        <h3><%= item.name %></h3>
-        <%= sanitize(item.description) %>
-        <div class="price_line">
-          <span class="price"><%= number_to_currency(item.price) %></span>
-          <%= button_to 'Add to Cart', line_items_path(item_id: item) %>
+            <div class="entry">
+              <h3><%= item.name %></h3>
+              <%= sanitize(item.description) %>
+
+              <div class="price_line">
+                <span class="price"><%= number_to_currency(item.price) %></span>
+                <!-- send request as AJAX -->
+                <%= button_to 'Add to Cart', line_items_path(item_id: item), remote:true %>
+              </div>
+            </div>
+          <% end %>
+        <% end %>
+      <% end %>
+    </div>
+
+    <div class="col-sm-4">
+      <div id="columns">
+        <div id="side">
+          <div id="cart">
+            <%= render @cart %>
+          </div>
         </div>
       </div>
-    <% end %>
-  <% end %>
-<% end %>
+    </div>
+
+  </div>
+</div>
