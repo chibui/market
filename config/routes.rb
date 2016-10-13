@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get 'store/index'
+
   devise_for :users
   scope "/admin" do
     resources :users
@@ -14,6 +16,6 @@ Rails.application.routes.draw do
 
   end
 
-  root :to => 'welcome#index'
-
+  # root :to => 'welcome#index'
+  root :to => 'store#index'
 end

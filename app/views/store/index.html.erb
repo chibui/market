@@ -1,0 +1,18 @@
+
+<p id="notice"><%= notice %></p>
+
+<h1>Market</h1>
+
+<% cache @items do %>  <!-- caching at store level -->
+  <% @items.each do |item| %>
+    <% cache item do %> <!-- caching at item level -->
+      <div class="entry">
+        <h3><%= item.name %></h3>
+        <%= sanitize(item.description) %>
+        <div class="price_line">
+          <span class="price"><%= number_to_currency(item.price) %></span>
+        </div>
+      </div>
+    <% end %>
+  <% end %>
+<% end %>
