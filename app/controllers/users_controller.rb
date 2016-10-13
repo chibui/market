@@ -10,11 +10,13 @@ class UsersController < ApplicationController
   # GET /users.json
   def index
     @users = User.all
+  
   end
 
   # GET /users/1
   # GET /users/1.json
   def show
+    @items = Item.all
     # Method to pull user login stats
     @joined_on = @user.created_at.to_formatted_s(:short)
     if @user.current_sign_in_at
@@ -93,4 +95,5 @@ class UsersController < ApplicationController
     def needs_password?(user, params)
       params[:password].present?
     end
+
 end

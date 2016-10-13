@@ -23,7 +23,7 @@
         <td><%= item.origin %></td>
         <td><%= item.min_order %></td>
         <td><%= item.price %></td>
-        <td><%= item.user.name %></td>
+        <td><%= link_to item.user.name, user_path(id: item.user_id) %></td>
         <td><%= link_to 'Show', item %></td>
         <!-- Use the can? (cancancan) method to check users permission and react accordingly-->
         <td>

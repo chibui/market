@@ -9,6 +9,7 @@ class Ability
         can :manage, :all
 
       elsif user.seller?
+        can :read, User
         can :read, Item
         can :create, Item
         can :update, Item do |item|
@@ -20,6 +21,7 @@ class Ability
 
       elsif user.regular?
         can :read, Item
+        can :read, User
       end
 
     # The first argument to `can` is the action you are giving the user
