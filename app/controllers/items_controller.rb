@@ -45,6 +45,11 @@ class ItemsController < ApplicationController
       if @item.update(item_params)
         format.html { redirect_to @item, notice: 'Item was successfully updated.' }
         format.json { render :show, status: :ok, location: @item }
+        # broadcast prices to update prices in carts.
+       @item = Item.all
+       ActionCable.server.broadcast 'items',
+         html: render_to_string('store/index', layout: false)
+
       else
         format.html { render :edit }
         format.json { render json: @item.errors, status: :unprocessable_entity }
