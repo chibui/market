@@ -20,12 +20,17 @@ class Ability
         end
         can :read, Order
 
+        # rescope to just update one field
+        can :manage, Order
+
 
       elsif user.regular?
         can :read, Item
         can :read, User
         can :read, Order
+        # maybe needs rescope for toggle order received?
         can :create, Order
+
       end
 
     # The first argument to `can` is the action you are giving the user

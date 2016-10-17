@@ -8,6 +8,7 @@
 Role.delete_all
 User.delete_all
 Item.delete_all
+Order.delete_all
 
 r1 = Role.create({name: "Regular", description: "Can read items"})
 r2 = Role.create({name: "Seller", description: "Can read and create items. Can update and destroy own items"})

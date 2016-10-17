@@ -5,8 +5,16 @@ class OrdersController < ApplicationController
   before_action :set_order, only: [:show, :edit, :update, :destroy]
   load_and_authorize_resource
 
-
-  # Method to load resource to authorize actions
+respond_to :js
+  # toggle shipped status
+  def shipped
+    @order = Order.find(params[:id])
+    if @order.update(shipped: true)
+      redirect_to orders_path
+    else
+      render @order
+    end
+  end
 
   # GET /orders
   # GET /orders.json
@@ -93,5 +101,6 @@ class OrdersController < ApplicationController
     def order_params
       params.require(:order).permit(:received, :shipped, :user_id)
     end
+
 
   end

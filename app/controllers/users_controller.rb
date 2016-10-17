@@ -6,11 +6,11 @@ class UsersController < ApplicationController
   def user_params
     params.require(:user).permit(:email, :password, :password_confirmation, :name, :role_id, :contact, :phone, :address, :abn, :bio)
   end
+
   # GET /users
   # GET /users.json
   def index
     @users = User.all
-
   end
 
   # GET /users/1

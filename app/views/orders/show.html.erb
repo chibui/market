@@ -22,8 +22,8 @@
       Processing
     </p>
     <% end %>
-  <% elsif current_user.role == 2 %>
-    <%= @order.shipped %>
+  <% elsif current_user.role_id == 2 %>
+  <%= link_to "Shipped", shipped_order_path(@order), :method => :put, remote: true %>
   <% end %>
 
 </p>
@@ -59,7 +59,20 @@
 
 <p>
   <strong>Received:</strong>
+  <% if current_user.role_id == 1 %>
+    <% if @order.received == false %>
+    <p>received button</p>
+    <% end %>
+  <% elsif current_user.role_id == 2 %>
+    <% if @order.received == false %>
+    <p>Waiting to receive</p>
+    <% else %>
+    <p>Order received </p>
+    <% end %>
+  <% end %>
+
   <%= @order.received %>
 </p>
+
 
 <%= link_to 'Back', orders_path %>
