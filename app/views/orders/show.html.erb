@@ -16,14 +16,16 @@
   <strong>Shipped:</strong>
   <% if current_user.role_id == 1 %>
     <% if @order.shipped == true %>
-    <p>Order shipped</p>
+    Order shipped
     <% else %>
-    <p>
-      Processing
-    </p>
+    Processing
     <% end %>
   <% elsif current_user.role_id == 2 %>
-  <%= link_to "Shipped", shipped_order_path(@order), :method => :put, remote: true %>
+    <% if @order.shipped == false %>
+      <%= link_to "Shipped", shipped_order_path(@order), :method => :put, remote: true %>
+    <% else %>
+    tick
+    <% end %>
   <% end %>
 
 </p>
@@ -61,17 +63,17 @@
   <strong>Received:</strong>
   <% if current_user.role_id == 1 %>
     <% if @order.received == false %>
-    <p>received button</p>
+      <%= link_to "Received", received_order_path(@order), :method => :put, remote: true %>
     <% end %>
   <% elsif current_user.role_id == 2 %>
     <% if @order.received == false %>
-    <p>Waiting to receive</p>
+    Waiting to receive
     <% else %>
-    <p>Order received </p>
+    Order received
     <% end %>
   <% end %>
 
-  <%= @order.received %>
+
 </p>
 
 

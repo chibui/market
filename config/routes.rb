@@ -8,9 +8,17 @@ Rails.application.routes.draw do
   get 'store/index'
   get 'legal/tos'
 
+  # routes for shipped status toggling
   resources :orders do
     member do
       put :shipped
+    end
+  end
+
+  # routes for received status toggling
+  resources :orders do
+    member do
+      put :received
     end
   end
 

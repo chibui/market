@@ -16,6 +16,16 @@ respond_to :js
     end
   end
 
+  # toggle received status
+  def received
+    @order = Order.find(params[:id])
+    if @order.update(received: true)
+      redirect_to orders_path
+    else
+      render @order
+    end
+  end
+
   # GET /orders
   # GET /orders.json
   def order_params
