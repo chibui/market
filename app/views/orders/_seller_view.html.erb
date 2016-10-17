@@ -1,0 +1,18 @@
+<% @orders.each do |order| %>
+  <% if (order.user_id == current_user.id)||current_user.role_id  %>
+    <% if order.sellers.include? current_user.id %>
+      <tr>
+        <td><%= order.created_at.time.to_formatted_s(:db) %></td>
+        <td><%= order.user.name %></td>
+        <td><%= check_box_tag :shipped %></td>
+        <td><% if order.received %>
+              <p>
+                received
+              </p>
+              <% end %>
+        </td>
+        <td><%= link_to 'Show', order %></td>
+      </tr>
+    <% end %>
+  <% end %>
+<% end %>

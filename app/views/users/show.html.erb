@@ -1,5 +1,6 @@
 <p id="notice"><%= notice %></p>
 
+<% if current_user.role_id == 3 %>
 <p>
   <strong>Name:</strong>
   <%= @user.name %>
@@ -29,6 +30,8 @@
   <strong>No. times logged in:</strong>
   <%= @user.sign_in_count %>
 </p>
+
+<% end %>
 <table>
   <thead>
     <tr>

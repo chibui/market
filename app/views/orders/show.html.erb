@@ -1,14 +1,65 @@
 <p id="notice"><%= notice %></p>
 
+<% if current_user.role_id == 2 %>
 <p>
-  <strong>Approved:</strong>
-  <%= @order.approved %>
+  <strong>Buyer:</strong>
+  <%= @order.user.name %>
+</p>
+<% end %>
+
+<p>
+  <strong>Order Date:</strong>
+  <%= @order.created_at.time.to_formatted_s(:db) %>
 </p>
 
 <p>
   <strong>Shipped:</strong>
-  <%= @order.shipped %>
+  <% if current_user.role_id == 1 %>
+    <% if @order.shipped == true %>
+    <p>Order shipped</p>
+    <% else %>
+    <p>
+      Processing
+    </p>
+    <% end %>
+  <% elsif current_user.role == 2 %>
+    <%= @order.shipped %>
+  <% end %>
+
 </p>
 
-<%= link_to 'Edit', edit_order_path(@order) %> |
+<table>
+  <thead>
+    <tr>
+      <th>Item</th>
+      <th>Quantity</th>
+      <th>Business</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @order.line_items.each do |lineitem| %>
+      <% if (@order.user_id == current_user.id) %>
+      <tr>
+        <td><%= lineitem.item.name %></td>
+        <td><%= lineitem.quantity %></td>
+        <td><%= lineitem.item.user.name %></td>
+      </tr>
+
+      <% elsif lineitem.item.user.id == current_user.id %>
+        <tr>
+          <td><%= lineitem.item.name %></td>
+          <td><%= lineitem.quantity %></td>
+        </tr>
+      <% end %>
+    <% end %>
+  </tbody>
+</table>
+
+<p>
+  <strong>Received:</strong>
+  <%= @order.received %>
+</p>
+
 <%= link_to 'Back', orders_path %>

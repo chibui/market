@@ -3,8 +3,17 @@ class OrdersController < ApplicationController
   before_action :authenticate_user!
   before_action :set_cart, only: [:new, :create]
   before_action :set_order, only: [:show, :edit, :update, :destroy]
+  load_and_authorize_resource
+
+
+  # Method to load resource to authorize actions
+
   # GET /orders
   # GET /orders.json
+  def order_params
+    params.require(:user).permit(:email, :password, :password_confirmation, :name, :role_id, :contact, :phone, :address, :abn, :bio)
+  end
+
   def index
     @orders = Order.all
   end
@@ -26,6 +35,7 @@ class OrdersController < ApplicationController
 
   # GET /orders/1/edit
   def edit
+
   end
 
   # POST /orders
@@ -33,6 +43,7 @@ class OrdersController < ApplicationController
   def create
     @order = Order.new(order_params)
     @order.add_line_items_from_cart(@cart)
+    @order.user_id = current_user.id if current_user
 
     respond_to do |format|
       if @order.save
@@ -80,6 +91,7 @@ class OrdersController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def order_params
-      params.require(:order).permit(:approved, :shipped)
+      params.require(:order).permit(:received, :shipped, :user_id)
     end
-end
+
+  end

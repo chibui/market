@@ -5,6 +5,7 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :trackable, :validatable
   belongs_to :role
   has_many :items, :dependent => :destroy
+  has_many :orders
   validates :name, :email, presence: true
   validates :tos_status, acceptance: true
 

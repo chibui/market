@@ -18,10 +18,14 @@ class Ability
         can :destroy, Item do |item|
           item.try(:user) == user
         end
+        can :read, Order
+
 
       elsif user.regular?
         can :read, Item
         can :read, User
+        can :read, Order
+        can :create, Order
       end
 
     # The first argument to `can` is the action you are giving the user

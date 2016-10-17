@@ -1,0 +1,46 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Orders</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Approved</th>
+      <th>Approved</th>
+      <th>Shipped</th>
+      <th>Business</th>
+      <th colspan="4"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @orders.each do |order| %>
+
+        <tr>
+          <% if order.user_id == current_user.id %>
+            <% elsif lineitem.item.user.id == current_user.id %>
+              <td><%= order.received %></td>
+              <td><%= check_box_tag :received %></td>
+              <td><%= order.shipped %></td>
+              <% if lineitem.item.user.id == current_user.id %>
+                <td><%= order.user.name %></td>
+              <% else %>
+                <td><%= order.line_items.first.item.user.name %></td>
+              <% end %>
+
+              <td><%= link_to 'Show', order %></td>
+              <% if can? :update, order %>
+                <td><%= link_to 'Edit', edit_order_path(order) %></td>
+                <td><%= link_to 'Destroy', order, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+              <% end %>
+            <% else %>
+          <% end %>
+        </tr>
+        
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Order', new_order_path %>

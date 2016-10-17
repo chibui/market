@@ -12,11 +12,17 @@
               <h3><%= item.name %></h3>
               <%= sanitize(item.description) %>
 
+              <div class="Shop Name">
+                <h3><%= link_to item.user.name, user_path(id: item.user_id) %></h3>
+
+              </div>
+
               <div class="price_line">
                 <span class="price"><%= number_to_currency(item.price) %></span>
                 <!-- send request as AJAX -->
                 <%= button_to 'Add to Cart', line_items_path(item_id: item), remote:true %>
               </div>
+
             </div>
           <% end %>
         <% end %>

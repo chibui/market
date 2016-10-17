@@ -1,0 +1,6 @@
+<% @order.line_items.each do |lineitem| %>
+<tr>
+  <td><%= lineitem.item.name %></td>
+  <td><%= lineitem.quantity %></td>
+</tr>
+<% end %>

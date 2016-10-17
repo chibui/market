@@ -1,0 +1,17 @@
+<% @orders.each do |order| %>
+  <% if order.user_id == current_user.id %>
+    <tr>
+      <td><%= order.created_at.time.to_formatted_s(:db) %></td>
+      <td><% if order.shipped %>
+            <p>
+              Shipped
+            </p>
+          <% end %>
+      </td>
+      <td><%= check_box_tag :received %></td>
+      <td><%= link_to 'Show', order %></td>
+      <td colspan="3"></td>
+
+    </tr>
+  <% end %>
+<% end %>
