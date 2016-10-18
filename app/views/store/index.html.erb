@@ -9,7 +9,7 @@
           <% cache item do %> <!-- caching at item level -->
 
             <div class="entry">
-              <h3><%= item.name %></h3>
+              <h3><%= link_to item.name, item %></h3>
               <%= sanitize(item.description) %>
 
               <div class="Shop Name">

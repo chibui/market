@@ -27,8 +27,11 @@
 
 <p>
   <strong>Seller:</strong>
-  <%= @item.user.name %>
+  <%= link_to @item.user.name, user_path(id: @item.user_id)  %>
 </p>
 
+<% if current_user.id == @item.user.id %>
 <%= link_to 'Edit', edit_item_path(@item) %> |
-<%= link_to 'Back', items_path %>
+<% end %>
+
+<%= link_to 'Back', :back %>
