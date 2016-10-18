@@ -6,9 +6,9 @@
         <td><%= order.user.name %></td>
         <td><%= check_box_tag :shipped %></td>
         <td><% if order.received %>
-              <p>
-                received
-              </p>
+              <p><%= order.updated_at.time.to_formatted_s(:db) %></p>
+            <% else %>
+              <p>En route</p>
               <% end %>
         </td>
         <td><%= link_to 'Show', order %></td>

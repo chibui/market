@@ -2,13 +2,25 @@
   <% if order.user_id == current_user.id %>
     <tr>
       <td><%= order.created_at.time.to_formatted_s(:db) %></td>
-      <td><% if order.shipped %>
-            <p>
-              Shipped
-            </p>
+      <td>
+        <p>
+          <% if order.shipped %>
+          Shipped
+          <% else %>
+          Processing
           <% end %>
+        </p>
       </td>
-      <td><%= check_box_tag :received %></td>
+      <td>
+        <% if order.received == false %>
+          <!-- Show button if shipped -->
+          <% if order.shipped == true %>
+            <%= link_to "Received", received_order_path(order), :method => :put, remote: true %>
+          <% end %>
+        <% else %>
+          <%= order.updated_at.time.to_formatted_s(:db) %>
+        <% end %>
+      </td>
       <td><%= link_to 'Show', order %></td>
       <td colspan="3"></td>
 

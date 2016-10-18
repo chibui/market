@@ -29,7 +29,10 @@ class Ability
         can :read, User
         can :read, Order
         # maybe needs rescope for toggle order received?
-        can :manage, Order
+        can :update, Order
+        can :edit, Order
+        can :create, Order
+
 
       end
 
