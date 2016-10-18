@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   resources :items
   resources :roles
 
+
   get 'store/index'
   get 'legal/tos'
 
@@ -22,7 +23,7 @@ Rails.application.routes.draw do
     end
   end
 
-  devise_for :users
+  devise_for :users, :controllers => { :omniauth_callbacks => 'users/omniauth_callbacks' }
   scope "/admin" do
     resources :users
   end

@@ -13,6 +13,7 @@ Order.delete_all
 r1 = Role.create({name: "Regular", description: "Can read items"})
 r2 = Role.create({name: "Seller", description: "Can read and create items. Can update and destroy own items"})
 r3 = Role.create({name: "Admin", description: "Can perform any CRUD operation on any resource"})
+r4 = Role.create({name: "Suspended", description: "No actions"})
 
 u1 = User.create({name: "Sally's Shop", email: "sally@example.com", password: "123456", password_confirmation: "123456", role_id: r1.id, contact: "Sally", phone: 43536356, address: "235 sdflskdf", abn: "1234", bio: "bio", tos_status: true })
 u2 = User.create({name: "Sue's Shop", email: "sue@example.com", password: "123456", password_confirmation: "123456", role_id: r2.id, contact: "Sue", phone: 43536356, address: "235 sdflskdf", abn: "1234", bio: "bio", tos_status: true })
