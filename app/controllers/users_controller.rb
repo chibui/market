@@ -3,10 +3,6 @@ class UsersController < ApplicationController
   # Method to load resource to authorize actions
   load_and_authorize_resource
 
-  def user_params
-    params.require(:user).permit(:email, :password, :password_confirmation, :name, :role_id, :contact, :phone, :address, :abn, :bio)
-  end
-
   # GET /users
   # GET /users.json
   def index
@@ -37,7 +33,6 @@ class UsersController < ApplicationController
   # POST /users
   # POST /users.json
   def create
-
 
     respond_to do |format|
       if @user.save
@@ -90,7 +85,7 @@ class UsersController < ApplicationController
   private
     # Never trust parameters from the scary internet, only allow the white list through.
     def user_params
-      params.require(:user).permit(:email, :password, :password_confirmation, :name, :role_id, :tos_status, :contact, :phone, :address, :abn, :bio)
+      params.require(:user).permit(:email, :password, :password_confirmation, :name, :role_id, :tos_status, :contact, :phone, :address, :abn, :bio, :image)
     end
 
     # Check if asking for password

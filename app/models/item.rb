@@ -6,9 +6,11 @@ class Item < ApplicationRecord
 
   has_many :line_items
 
+  # User can't destroy if pending items in order, maybe move line_items to past_items and past_orders once transaction completes
   before_destroy :ensure_not_referenced_by_any_line_item
 
   mount_uploader :item_image, ItemUploader
+
    # returns most recently updated product. Used for caching
   def self.latest
   Item.order(:updated_at).last

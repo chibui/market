@@ -13,13 +13,13 @@ class User < ApplicationRecord
 
   before_save :assign_role
 
-  # Callback to send mail after user created
-  after_create :send_welcome_email
-
   def self.search(search)
     where("name ILike ?", "%#{search}%")
   end
-  
+
+  # Callback to send mail after user created
+  after_create :send_welcome_email
+
   def send_welcome_email
     ModelMailer.new_seller_notification(self).deliver_now
   end
