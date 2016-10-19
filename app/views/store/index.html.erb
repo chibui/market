@@ -7,14 +7,21 @@
       <% cache @items do %>  <!-- caching at store level -->
         <% @items.each do |item| %>
           <% cache item do %> <!-- caching at item level -->
+            <div class="item_image">
+              <p>
+                <% if item.item_image.thumb.url.present? %>
+                <strong>Image:</strong>
+                <%= image_tag item.item_image.thumb.url %>
+                <% end %>
+              </p>
+            </div>
 
             <div class="entry">
               <h3><%= link_to item.name, item %></h3>
               <%= sanitize(item.description) %>
 
-              <div class="Shop Name">
+              <div class="Shop_name">
                 <h3><%= link_to item.user.name, user_path(id: item.user_id) %></h3>
-
               </div>
 
               <div class="price_line">

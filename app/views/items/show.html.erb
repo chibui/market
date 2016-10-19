@@ -1,6 +1,13 @@
 <p id="notice"><%= notice %></p>
 
 <p>
+  <strong>Image:</strong>
+  <% if @item.item_image.thumb.url.present? %>
+  <%= image_tag @item.item_image.thumb.url %>
+  <% end %>
+</p>
+
+<p>
   <strong>Name:</strong>
   <%= @item.name %>
 </p>

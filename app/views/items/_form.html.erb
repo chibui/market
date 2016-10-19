@@ -35,6 +35,12 @@
     <%= f.label :price %>
     <%= f.text_field :price %>
   </div>
+
+  <div class="field">
+    <%= f.label :image %><br>
+    <%= f.file_field :item_image %>
+  </div>
+
   <%= f.hidden_field :user_id, :value => user_session %>
 
   <div class="actions">

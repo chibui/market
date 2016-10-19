@@ -8,6 +8,7 @@ class Item < ApplicationRecord
 
   before_destroy :ensure_not_referenced_by_any_line_item
 
+  mount_uploader :item_image, ItemUploader
    # returns most recently updated product. Used for caching
   def self.latest
   Item.order(:updated_at).last

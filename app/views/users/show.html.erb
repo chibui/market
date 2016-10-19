@@ -1,8 +1,10 @@
 <p id="notice"><%= notice %></p>
 
 <p>
+  <% if @user.image.thumb.url.present? %>
   <strong>Image:</strong>
   <%= image_tag @user.image.thumb.url %>
+  <% end %>
 </p>
 
 <% if current_user.role_id == 3 %>
