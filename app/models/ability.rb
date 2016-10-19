@@ -27,6 +27,7 @@ class Ability
       elsif user.regular?
         can :read, Item
         can :read, User
+        can :edit, User
         can :read, Order
         # maybe needs rescope for toggle order received?
         can :update, Order

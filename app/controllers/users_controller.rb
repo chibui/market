@@ -38,6 +38,7 @@ class UsersController < ApplicationController
   # POST /users.json
   def create
 
+
     respond_to do |format|
       if @user.save
         format.html { redirect_to @user, notice: 'User was successfully created.' }
@@ -83,6 +84,7 @@ class UsersController < ApplicationController
       format.html { redirect_to users_url, notice: 'User was successfully destroyed.' }
       format.json { head :no_content }
     end
+
   end
 
   private
