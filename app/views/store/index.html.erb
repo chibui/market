@@ -4,6 +4,18 @@
     <div class="col-sm-8">
       <h1>Market</h1>
 
+      <%= form_tag(root_path, :method => "get", id: "search-form") do %>
+      <%= text_field_tag :search, params[:search], placeholder: "Search Items" %>
+      <%= submit_tag "search" %>
+      <% end %>
+
+      <% if @items.present? || @users.present? %>
+        <%= render 'store/items' %>
+      <% else %>
+        <p>There are no items matching <%= params[:search] %></p>
+      <% end %>
+
+
       <% cache @items do %>  <!-- caching at store level -->
         <% @items.each do |item| %>
           <% cache item do %> <!-- caching at item level -->

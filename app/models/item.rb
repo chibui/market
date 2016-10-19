@@ -14,6 +14,10 @@ class Item < ApplicationRecord
   Item.order(:updated_at).last
   end
 
+  def self.search(search)
+    where("name ILike ? OR origin ILike ?", "%#{search}%", "%#{search}%")
+  end
+
   private
     # ensure that there are no line items referencing this product
     def ensure_not_referenced_by_any_line_item
