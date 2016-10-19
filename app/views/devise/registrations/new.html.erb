@@ -50,6 +50,11 @@
     <%= f.text_field :bio %>
   </div>
 
+  <div class="field">
+    <%= f.label :image %><br>
+    <%= f.file_field :image %>
+  </div>
+
   <%= f.check_box :tos_status %>
       <%= f.label :tos_status, "I agree to the " %>
       <!-- Opens TOS page in new tab -->

@@ -9,6 +9,8 @@ class User < ApplicationRecord
   validates :name, :email, presence: true
   validates :tos_status, acceptance: true
 
+  mount_uploader :image, ImageUploader
+
   before_save :assign_role
 
   # Callback to send mail after user created
