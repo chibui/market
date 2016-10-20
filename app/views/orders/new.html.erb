@@ -1,35 +1,44 @@
+<div class="container">
 
-<div class="order_form">
-  <fieldset>
-    <legend>Please check your order</legend>
-      <h2>Your Cart</h2>
+<%= form_for(@order) do |f| %>
+  <% if @order.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@order.errors.count, "error") %> prohibited this order from being saved:</h2>
 
-        <table>
-            <thead>
-              <tr>
-                <th>QTY</th>
-                <th>Item</th>
-                <th>Seller</th>
-                <th>Price</th>
-              </tr>
-            </thead>
-          <%= render(@cart.line_items) %>
+      <ul>
+      <% @order.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
 
-          <tr class="total_line">
-            <td colspan="3">Total</td>
-            <td class="total_cell"><%= number_to_currency(@cart.total_price) %></td>
-          </tr>
+  <table>
+      <thead>
+        <tr>
+          <th>QTY</th>
+          <th>Item</th>
+          <th>Seller</th>
+        </tr>
+      </thead>
+    <%= render(@cart.line_items) %>
 
-        </table>
-        <%= render 'form', order:@order%>
-  </fieldset>
+    <tr class="total_line">
+      <td></td>
+      <td colspan="2">Total</td>
+      <td class="total_cell"><%= number_to_currency(@cart.total_price) %></td>
+    </tr>
+
+  </table>
+
+  <%= f.hidden_field :user_id, :value => user_session %>
+<br>
+  <div class="actions">
+    <%= f.submit 'Place Order' %>
+  </div>
+  <br>
+  <%= link_to 'Back', :back %>
+<% end %>
+
+
 </div>
-
-<p>
-  cart
-</p>
-<%= @cart.total_price %>
-<p>
-  order
-</p>
-<%= @order.total_price %>

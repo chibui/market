@@ -28,7 +28,23 @@
     Yes
     <% end %>
   <% end %>
+</p>
 
+<p>
+  <strong>Paid:</strong>
+  <% if current_user.role_id == 1 %>
+    <% if @order.paid == true %>
+    <% order.paid.update? %>
+    <% else %>
+    Awaiting
+    <% end %>
+  <% elsif current_user.role_id == 2 %>
+    <% if @order.paid == false %>
+    Awaiting
+    <% else %>
+    Paid
+    <% end %>
+  <% end %>
 </p>
 
 <table>

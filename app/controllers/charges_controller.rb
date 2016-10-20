@@ -1,15 +1,10 @@
 class ChargesController < ApplicationController
   before_action :authenticate_user!
-  # before_action :set_order, :require_same_id
+  # before_action :set_order, only: [:show, :edit, :update, :destroy]
 
 
-  # def paid
-  #   @order = Order.find(params[:id])
-  #   if @order.update(shipped: true)
-  #     redirect_to orders_path
-  #   else
-  #     render @order
-  #   end
+  # def order_params
+  #   params.require(:user).permit(:email, :password, :password_confirmation, :name, :role_id, :contact, :phone, :address, :abn, :bio)
   # end
 
   def new
@@ -19,7 +14,6 @@ class ChargesController < ApplicationController
 
   def create
     # Amount in cents
-
     @amount = params[:stripeAmount]
 
     # Create the customer in Stripe
@@ -37,6 +31,10 @@ class ChargesController < ApplicationController
       currency: 'aud'
     )
 
+    # if charge["paid"] == true
+    #   @order.toggle(:paid)
+    # end
+
     flash[:success] = 'Your payment has been processed'
     redirect_to root_path
 
@@ -47,5 +45,12 @@ class ChargesController < ApplicationController
     redirect_to charges_path
     flash[:notice] = "Please try again"
   end
+
+  private
+
+  # def set_order
+  #   @order = Order.find(params[:id])
+  # end
+
 
 end

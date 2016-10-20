@@ -6,6 +6,16 @@ class OrdersController < ApplicationController
   load_and_authorize_resource
 
 respond_to :js
+
+  # def paid
+  #   @order = Order.find(params[:id])
+  #   if @order.update(paid: true)
+  #     redirect_to orders_path
+  #   else
+  #     render @order
+  #   end
+  # end
+  #
   # toggle shipped status
   def shipped
     @order = Order.find(params[:id])
@@ -66,8 +76,8 @@ respond_to :js
     respond_to do |format|
       if @order.save
         Cart.destroy( session[ :cart_id ] )
-        session[:cart_id] = nil
         format.html { redirect_to new_charge_path(order:@order), notice:
+        session[:cart_id] = nil
           'Thank you for your order.' }
         format.json { render :show, status: :created, location: @order }
       else
@@ -109,7 +119,8 @@ respond_to :js
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def order_params
-      params.require(:order).permit(:received, :shipped, :user_id)
+      params.require(:order).permit(:received, :shipped, :user_id, :paid)
+
     end
 
 

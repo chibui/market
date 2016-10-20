@@ -1,0 +1,27 @@
+<div class="container">
+
+  <div class="order_form">
+    <fieldset>
+      <legend>Please confirm your order</legend>
+          <table>
+              <thead>
+                <tr>
+                  <th>QTY</th>
+                  <th>Item</th>
+                  <th>Seller</th>
+                  <th>Price</th>
+                </tr>
+              </thead>
+              <%= render(@cart.line_items) %>
+
+              <tbody>
+                <tr class="total_line">
+                  <td colspan="3">Total</td>
+                  <td class="total_cell"><%= number_to_currency(@cart.total_price) %></td>
+                </tr>
+              </tbody>
+          </table>
+          <br>
+          <!-- <%= render 'form', order:@order%> -->
+    </fieldset>
+  </div>
