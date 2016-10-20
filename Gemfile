@@ -15,7 +15,11 @@ gem 'uglifier', '>= 1.3.0'
 gem 'coffee-rails', '~> 4.2'
 # See https://github.com/rails/execjs#readme for more supported runtimes
 # gem 'therubyracer', platforms: :ruby
+# Use stripe for payment processing
+gem 'stripe'
+# Use carrierwave for image uploading
 gem 'carrierwave', '~> 0.10.0'
+# Use mini_magick to resize images
 gem 'mini_magick', '~> 4.3'
 # use omniauth-facebook for facebook login
 gem 'omniauth-facebook'

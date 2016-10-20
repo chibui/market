@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   resources :carts
   resources :items
   resources :roles
+  resources :charges
 
 
   get 'store/index'
