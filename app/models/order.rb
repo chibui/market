@@ -17,7 +17,7 @@ class Order < ApplicationRecord
 
   # Method to calculate cart total price
   def total_price
-    line_items.to_a.sum { |item| item.total_price}
+    line_items.map { |line_item| line_item.item.price * line_item.quantity }.sum
   end
 
   # Method to put line_items of an order into array then find unique value and return for find orders related to a seller (order index view)
