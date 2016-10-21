@@ -3,10 +3,22 @@
     <div class="col-sm-8">
       <h1>Items</h1>
 
-      <%= form_tag(root_path, :method => "get", id: "search-form") do %>
+
+          <div class="input-group">
+            <%= form_tag(root_path, :method => "get", id: "search-form") do %>
+            <%= text_field_tag :search, params[:search], type:"text", class: "form-control",placeholder: "Search Items" %>
+            <span class="input-group-btn">
+            <!-- <%= submit_tag "search" , class: "btn btn-default"%> -->
+            <% end %>
+            </span>
+           </div>
+
+
+      <!-- <%= form_tag(root_path, :method => "get", id: "search-form") do %>
         <%= text_field_tag :search, params[:search], placeholder: "Search Items" %>
-        <%= submit_tag "search" %>
-      <% end %>
+        <%= submit_tag "search" , class: "btn btn-default"%>
+      <% end %> -->
+      <br>
 
       <% if @items.present? %>
         <%= render 'store/items' %>
@@ -17,29 +29,42 @@
       <% cache @items do %>  <!-- caching at store level -->
         <% @items.each do |item| %>
           <% cache item do %> <!-- caching at item level -->
-            <div class="item_image">
-              <p>
-                <% if item.item_image.thumb.url.present? %>
-                <strong>Image:</strong>
-                <%= image_tag item.item_image.thumb.url %>
-                <% end %>
-              </p>
-            </div>
 
-            <div class="entry">
-              <h3><%= link_to item.name, item %></h3>
-              <%= item.description %>
-              
-              <div class="Shop_name">
-                <h3><%= link_to item.user.name, user_path(id: item.user_id) %></h3>
+            <div class="panel panel-default">
+              <div class="panel-heading">
+                <h3 class="panel-title"><%= link_to item.name, item %></h3>
               </div>
 
-              <div class="price_line">
-                <span class="price"><%= number_to_currency(item.price) %></span>
-                <!-- send request as AJAX -->
-                <%= button_to 'Add to Cart', line_items_path(item_id: item), remote:true %>
+              <div class="panel-body">
+                <div class="row">
+                  <div class="col-sm-12, center-block">
+                    <% if item.item_image.thumb.url.present? %>
+                      <%= image_tag item.item_image.thumb.url %>
+                    <% end %>
+                  </div>
+                </div>
+
+                <div class="row">
+                  <%= item.description %>
+                </div>
+
+                <div class="row">
+                  <%= link_to item.user.name, user_path(id: item.user_id) %>
+                </div>
               </div>
 
+              <div class="panel-footer">
+                <div class="row">
+                  <div class="col-md-6">
+                    <%= number_to_currency(item.price) %>
+                  </div>
+
+                  <div class="col-md-6">
+                    <!-- send request as AJAX -->
+                    <%= link_to 'Add to Cart', line_items_path(item_id: item), remote:true, class: "btn btn-default" %>
+                  </div>
+                </div>
+              </div>
             </div>
           <% end %>
         <% end %>

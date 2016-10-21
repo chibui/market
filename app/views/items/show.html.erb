@@ -1,44 +1,46 @@
-<p id="notice"><%= notice %></p>
+<div class="container">
 
-<p>
-  <strong>Image:</strong>
-  <% if @item.item_image.thumb.url.present? %>
-  <%= image_tag @item.item_image.thumb.url %>
+  <p>
+    <strong>Image:</strong>
+    <% if @item.item_image.thumb.url.present? %>
+    <%= image_tag @item.item_image.thumb.url %>
+    <% end %>
+  </p>
+
+  <p>
+    <strong>Name:</strong>
+    <%= @item.name %>
+  </p>
+
+  <p>
+    <strong>Description:</strong>
+    <%= @item.description %>
+  </p>
+
+  <p>
+    <strong>Origin:</strong>
+    <%= @item.origin %>
+  </p>
+
+  <p>
+    <strong>Min order:</strong>
+    <%= @item.min_order %>
+  </p>
+
+  <p>
+    <strong>Price:</strong>
+    <%= @item.price %>
+  </p>
+
+  <p>
+    <strong>Seller:</strong>
+    <%= link_to @item.user.name, user_path(id: @item.user_id)  %>
+  </p>
+
+  <% if current_user.id == @item.user.id %>
+  <%= link_to 'Edit', edit_item_path(@item) %> |
   <% end %>
-</p>
-
-<p>
-  <strong>Name:</strong>
-  <%= @item.name %>
-</p>
-
-<p>
-  <strong>Description:</strong>
-  <%= @item.description %>
-</p>
-
-<p>
-  <strong>Origin:</strong>
-  <%= @item.origin %>
-</p>
-
-<p>
-  <strong>Min order:</strong>
-  <%= @item.min_order %>
-</p>
-
-<p>
-  <strong>Price:</strong>
-  <%= @item.price %>
-</p>
-
-<p>
-  <strong>Seller:</strong>
-  <%= link_to @item.user.name, user_path(id: @item.user_id)  %>
-</p>
-
-<% if current_user.id == @item.user.id %>
-<%= link_to 'Edit', edit_item_path(@item) %> |
-<% end %>
 
 <%= link_to 'Back', :back %>
+
+</div>
