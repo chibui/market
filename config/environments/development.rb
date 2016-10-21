@@ -57,10 +57,10 @@ Rails.application.configure do
   config.action_mailer.smtp_settings = {
     address:              'smtp.mailgun.org',
     port:                 587,
-    domain:               Rails.application.secrets.MAILER_DOMAIN,
-    user_name:            Rails.application.secrets.MAILER_USER,
-    password:             Rails.application.secrets.MAILER_PASS,
+    domain:               ENV['MAILER_DOMAIN'],
+    user_name:            ENV['MAILER_USER'],
+    password:             ENV['MAILER_PASS'],
     authentication:       'plain',
     enable_starttls_auto: true  }
-
+https://mighty-brushlands-54286.herokuapp.com/users/auth/facebook
 end
