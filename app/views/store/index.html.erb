@@ -4,11 +4,11 @@
       <h1>Items</h1>
 
       <%= form_tag(root_path, :method => "get", id: "search-form") do %>
-      <%= text_field_tag :search, params[:search], placeholder: "Search Items" %>
-      <%= submit_tag "search" %>
+        <%= text_field_tag :search, params[:search], placeholder: "Search Items" %>
+        <%= submit_tag "search" %>
       <% end %>
 
-      <% if @items.present? || @users.present? %>
+      <% if @items.present? %>
         <%= render 'store/items' %>
       <% else %>
         <p>There are no items matching <%= params[:search] %></p>
@@ -29,7 +29,7 @@
             <div class="entry">
               <h3><%= link_to item.name, item %></h3>
               <%= item.description %>
-
+              
               <div class="Shop_name">
                 <h3><%= link_to item.user.name, user_path(id: item.user_id) %></h3>
               </div>
