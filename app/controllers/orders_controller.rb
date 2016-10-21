@@ -16,6 +16,7 @@ respond_to :js
   #   end
   # end
   #
+  
   # toggle shipped status
   def shipped
     @order = Order.find(params[:id])

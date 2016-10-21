@@ -1,39 +1,42 @@
+<div class="container">
+  
+  <script src="https://checkout.stripe.com/checkout.js"></script>
+  <%= form_tag charges_path, id: 'stripeForm' do -%>
 
-<script src="https://checkout.stripe.com/checkout.js"></script>
-<%= form_tag charges_path, id: 'stripeForm' do -%>
-
-   <article>
-     <%= label_tag 'amount', 'Your order total is ', class: 'amount' %>
-     <%= label_tag 'amount', "$#{@order.total_price}", class: "amount-figure" %>
-   </article> <br>
-   <button id="stripe-button" class="btn btn-primary">Complete Order</button>
-                <%= hidden_field_tag 'stripeToken' %>
-                <%= hidden_field_tag 'stripeEmail' %>
-                <%= hidden_field_tag 'stripeAmount' %>
-   <script>
-     var handler = StripeCheckout.configure({
-       key: "<%= Rails.configuration.stripe[:publishable_key] %>",
-       token: function (token, args) {
-         $("#stripeToken").val(token.id);
-         $("#stripeEmail").val(token.email);
-         $("#stripeAmount").val(<%= @order.total_price %>);
-         $("#stripeForm").submit();
-       }
-     });
-
-     $('#stripe-button').on('click', function (e) {
-       // Open Checkout with further options
-       handler.open({
-         name: '<%= @order.user.contact %>' ,
-         description: 'Payment for Order:<%= @order.id %>',
-         amount: <%= @order.total_price * 100 %>,
-         email: '<%= @order.user.email %>'
+     <article>
+       <%= label_tag 'amount', 'Your order total is ', class: 'amount' %>
+       <%= label_tag 'amount', "$#{@order.total_price}", class: "amount-figure" %>
+     </article> <br>
+     <button id="stripe-button" class="btn btn-primary">Complete Order</button>
+                  <%= hidden_field_tag 'stripeToken' %>
+                  <%= hidden_field_tag 'stripeEmail' %>
+                  <%= hidden_field_tag 'stripeAmount' %>
+     <script>
+       var handler = StripeCheckout.configure({
+         key: "<%= Rails.configuration.stripe[:publishable_key] %>",
+         token: function (token, args) {
+           $("#stripeToken").val(token.id);
+           $("#stripeEmail").val(token.email);
+           $("#stripeAmount").val(<%= @order.total_price %>);
+           $("#stripeForm").submit();
+         }
        });
-     e.preventDefault();
-     });
 
-     $(window).on('popstate', function() {
-       handler.close();
-     });
-   </script>
- <% end %>
+       $('#stripe-button').on('click', function (e) {
+         // Open Checkout with further options
+         handler.open({
+           name: '<%= @order.user.contact %>' ,
+           description: 'Payment for Order:<%= @order.id %>',
+           amount: <%= @order.total_price * 100 %>,
+           email: '<%= @order.user.email %>'
+         });
+       e.preventDefault();
+       });
+
+       $(window).on('popstate', function() {
+         handler.close();
+       });
+     </script>
+     <% end %>
+
+</div>

@@ -1,20 +1,21 @@
 <div class="container">
-<p id="notice"><%= notice %></p>
   <div class="row">
     <div class="col-sm-8">
       <h1>Items</h1>
+
+      <div class="form-group has-feedback">
 
       <%= form_tag(root_path, :method => "get", id: "search-form") do %>
       <%= text_field_tag :search, params[:search], placeholder: "Search Items" %>
       <%= submit_tag "search" %>
       <% end %>
+      </div>
 
       <% if @items.present? || @users.present? %>
         <%= render 'store/items' %>
       <% else %>
         <p>There are no items matching <%= params[:search] %></p>
       <% end %>
-
 
       <% cache @items do %>  <!-- caching at store level -->
         <% @items.each do |item| %>

@@ -38,6 +38,7 @@ class CartsController < ApplicationController
         format.json { render json: @cart.errors, status: :unprocessable_entity }
       end
     end
+
   end
 
   # PATCH/PUT /carts/1

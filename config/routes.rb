@@ -7,8 +7,9 @@ Rails.application.routes.draw do
   resources :charges
 
 
-  get 'store/index'
+  get '/store/index'
   get 'legal/tos'
+  get '/shops', to: 'shops#index'
 
   # routes for shipped status toggling
   resources :orders do
