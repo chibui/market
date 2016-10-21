@@ -16,8 +16,7 @@ gem 'coffee-rails', '~> 4.2'
 # See https://github.com/rails/execjs#readme for more supported runtimes
 # gem 'therubyracer', platforms: :ruby
 
-
-# Use bootstrap-sass frameworks for css 
+# Use bootstrap-sass frameworks for css
 gem 'bootstrap-sass', '~> 3.3.6'
 # Use stripe for payment processing
 gem 'stripe'

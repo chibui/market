@@ -1,24 +1,60 @@
-# README
+# Chi's CFA Term 2 Project - Market
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+* Ruby 2.3.1, Rails 5
 
-Things you may want to cover:
+## Links
 
-* Ruby version
+Github
+https://github.com/chibui/market
 
-* System dependencies
+Heroku
+https://mighty-brushlands-54286.herokuapp.com/
 
-* Configuration
+Trello Board
+https://trello.com/b/ftRJ8gh6
 
-* Database creation
+Project Estimate
+https://docs.google.com/spreadsheets/d/1NpivmQK3e69s_W5oJHZLt3dzsAFxCEMKzhaM5JbbCKI/edit?usp=sharing
 
-* Database initialization
+Original ERD
+https://drive.google.com/open?id=0B8dNZ9Aq7hv5bF9ZcEVzaHE0T1k
 
-* How to run the test suite
+Final ERD
+https://github.com/chibui/market/blob/master/erd.pdf
 
-* Services (job queues, cache servers, search engines, etc.)
+Wireframes
+https://drive.google.com/open?id=0B8dNZ9Aq7hv5U1JHd0lGUFo5VjQ
 
-* Deployment instructions
+Ruby Critic
+https://github.com/chibui/market/blob/master/overview.html
 
-* ...
+Code Review
+Extensive review of Alex's code via github
+
+
+## Gems used
+* pg
+* bootstrap-sass
+* stripe
+* carrierwave
+* mini_magick
+* omniauth-facebook
+* cancancan
+* devise
+
+bundle
+
+
+## Database initialization
+
+rake db:migrate
+rake db:seeds
+
+## Problem Statement
+With a boom in the food and beverage industry, Sydney still has no central marketplace platform for restaurant owners and managers.
+
+Many still have to unproductively physically travel to the sydney flemington markets at ungodly hours to purchase stock. Finding a trustworthy supplier is difficult having to reply on testing suppliers manually which can have devestating effects when partnering with unscruplous suppliers.
+
+
+## Solution
+A online marketplace for wholesalers, produces and growers can interact and trade. Generate trust between stakeholders via implementation of a two way rating system which will weed out untrustworthy users and reward great ones.
