@@ -62,5 +62,4 @@ Rails.application.configure do
     password:             ENV['MAILER_PASS'],
     authentication:       'plain',
     enable_starttls_auto: true  }
-https://mighty-brushlands-54286.herokuapp.com/users/auth/facebook
 end

@@ -249,10 +249,7 @@ Devise.setup do |config|
   # up on your models and hooks.
   # config.omniauth :github, 'APP_ID', 'APP_SECRET', scope: 'user,public_repo'
   config.secret_key = '948480c76940e1256be64b7e6315e66d2b9a2650f985235d23cb0c97b8b3c94d6a9301778457107d0b654a0cd8689031bced296dcac8cf9801f66ca56ee959df'
-  config.omniauth :facebook,  ENV['APP_ID'], ENV['APP_SECRET'], scope: 'email', info_fields: 'email',
-  # callback_url: "http://localhost:3000/users/auth/facebook/callback",
-  callback_url: "https://mighty-brushlands-54286.herokuapp.com/users/auth/facebook",
-  :client_options => {:ssl => {:ca_path => '/usr/lib/ssl/certs/ca-certificates.crt'}}
+  config.omniauth :facebook,  ENV['APP_ID'], ENV['APP_SECRET'], scope: 'email', info_fields: 'email'
 
 
   # ==> Warden configuration
