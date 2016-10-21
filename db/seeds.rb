@@ -6,10 +6,6 @@ ActiveRecord::Base.connection.disable_referential_integrity do
   #
   #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
   #   Character.create(name: 'Luke', movie: movies.first)
-  Role.destroy_all
-  User.destroy_all
-  Item.destroy_all
-  Order.destroy_all
 
   r1 = Role.create({name: "Regular", description: "Can read items"})
   r2 = Role.create({name: "Seller", description: "Can read and create items. Can update and destroy own items"})
