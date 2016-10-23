@@ -17,7 +17,7 @@
       <tbody>
         <% if current_user.role_id ==  2 %>
           <%= render 'orders/seller_view' %>
-        <% else (current_user.role_id == 1)||order.id == current_user.id %>
+        <% else (current_user.role_id == 1)%>
           <%= render 'orders/buyer_view' %>
         <% end %>
       </tbody>
