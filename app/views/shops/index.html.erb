@@ -19,17 +19,17 @@
 <% @users.each do |user| %>
   <div class="row">
     <% if user.role.id == 2 %>
+    <%= user.name %>
+    <%= user.email %>
+    <%= link_to 'View', user %>
+    <%= link_to 'Message me!', conversations_path(sender_id: current_user.id, recipient_id: user), method: 'post'%>
     <div class="col-sm-3">
-      <%= user.name %>
     </div>
     <div class="col-sm-3">
-      <%= user.email %>
     </div>
     <div class="col-sm-3">
-      <%= link_to 'View', user %>
     </div>
 
-      <%= link_to 'Message me!', conversations_path(sender_id: current_user.id, recipient_id: user), method: 'post'%>
     <% end %>
   </div>
 <% end %>

@@ -10,15 +10,20 @@
           <% end %>
           <th>Shipped</th>
           <th>Received</th>
-          <th colspan="4"></th>
+          <% if current_user.role_id == 3 %>
+          <th>Buyer</th>
+          <% end %>
+          <th colspan="6"></th>
         </tr>
       </thead>
 
       <tbody>
         <% if current_user.role_id ==  2 %>
           <%= render 'orders/seller_view' %>
-        <% else (current_user.role_id == 1)%>
+        <% elsif current_user.role_id == 1 %>
           <%= render 'orders/buyer_view' %>
+        <% elsif current_user.role_id == 3 %>
+          <%= render 'orders/admin_view' %>
         <% end %>
       </tbody>
     </table>

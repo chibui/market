@@ -1,5 +1,5 @@
 <% @orders.each do |order| %>
-  <% if order.user_id == current_user.id && current_user.role_id == 1 %>
+  <% if order.user_id == current_user.id %>
     <tr>
       <td><%= order.created_at.time.to_formatted_s(:db) %></td>
       <td>
