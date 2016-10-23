@@ -4,11 +4,18 @@
       <tr>
         <td><%= order.created_at.time.to_formatted_s(:db) %></td>
         <td><%= order.user.name %></td>
-        <td><%= check_box_tag :shipped %></td>
+        <td><% if order.shipped == true%>
+              <p>Yes</p>
+            <%else%>
+              <p>To Process</p>
+            <% end %>  
+        </td>
         <td><% if order.received %>
               <p><%= order.updated_at.time.to_formatted_s(:db) %></p>
+            <% elsif (order.received == false)&&order.shipped == false %>
+              <p></p>
             <% else %>
-              <p>En route</p>
+              <p>En Route</p>
               <% end %>
         </td>
         <td><%= link_to 'Show', order %></td>
