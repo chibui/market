@@ -15,13 +15,13 @@
         <% if order.received == false %>
           <!-- Show button if shipped -->
           <% if order.shipped == true %>
-            <%= link_to "Received", received_order_path(order), :method => :put, remote: true %>
+            <%= link_to "Received", received_order_path(order), :method => :put,  remote: true %>
           <% end %>
         <% else %>
           <%= order.updated_at.time.to_formatted_s(:db) %>
         <% end %>
       </td>
-      <td><%= link_to 'Show', order %></td>
+      <td><%= link_to 'Show', order, class: "btn btn-default btn-sm"  %></td>
       <td colspan="3"></td>
 
     </tr>

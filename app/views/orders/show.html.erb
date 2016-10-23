@@ -4,7 +4,7 @@
 <p>
   <strong>Buyer:</strong>
   <%= @order.user.name%>
-  <%= link_to 'Message me!', conversations_path(sender_id: current_user.id, recipient_id: @order.user.id), method: 'post'%>
+  <%= link_to 'Message me!', conversations_path(sender_id: current_user.id, recipient_id: @order.user.id), method: 'post' %>
 </p>
 <% end %>
 
