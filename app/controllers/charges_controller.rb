@@ -1,6 +1,6 @@
 class ChargesController < ApplicationController
   before_action :authenticate_user!
-  # before_action :set_order, only: [:show, :edit, :update, :destroy]
+  before_action :set_order
 
 
   # def order_params
@@ -31,9 +31,9 @@ class ChargesController < ApplicationController
       currency: 'aud'
     )
 
-    # if charge["paid"] == true
-    #   @order.toggle(:paid)
-    # end
+    if charge["paid"] == true
+      @order.update_attribute(:paid, true)
+    end
 
     flash[:success] = 'Your payment has been processed'
     redirect_to root_path
@@ -48,9 +48,9 @@ class ChargesController < ApplicationController
 
   private
 
-  # def set_order
-  #   @order = Order.find(params[:id])
-  # end
+  def set_order
+    @order = Order.find(params[:order])
+  end
 
 
 end

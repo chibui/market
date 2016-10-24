@@ -15,7 +15,7 @@
   <body class='<%= controller.controller_name %>'>
     <%= render 'partials/navbar' %>
     <% flash.each do |name, msg| %>
-      <%= content_tag :div, msg, id: "flash_#{name}" %>
+      <%= content_tag :div, msg, id: "flash_#{name}", class: "alert alert-#{name}" %>
     <% end %>
 
     <%= yield %>

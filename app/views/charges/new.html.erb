@@ -1,5 +1,5 @@
 <div class="container">
-  
+
   <script src="https://checkout.stripe.com/checkout.js"></script>
   <%= form_tag charges_path, id: 'stripeForm' do -%>
 
@@ -11,6 +11,7 @@
                   <%= hidden_field_tag 'stripeToken' %>
                   <%= hidden_field_tag 'stripeEmail' %>
                   <%= hidden_field_tag 'stripeAmount' %>
+                  <%= hidden_field_tag 'order', @order.id %>
      <script>
        var handler = StripeCheckout.configure({
          key: "<%= Rails.configuration.stripe[:publishable_key] %>",
