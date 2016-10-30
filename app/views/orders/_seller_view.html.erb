@@ -1,5 +1,7 @@
 <% @orders.each do |order| %>
-  <% if (order.user_id == current_user.id)||current_user.role_id == 2 %>
+<% order.line_items.each do |lineitem| %>
+
+  <% if order.user_id == current_user.id || current_user.role_id == 2 %>
     <% if order.sellers.include? current_user.id %>
       <tr>
         <td><%= order.created_at.time.to_formatted_s(:db) %></td>
@@ -22,4 +24,5 @@
       </tr>
     <% end %>
   <% end %>
+<% end %>
 <% end %>
