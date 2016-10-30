@@ -5,6 +5,7 @@
   <strong>Image:</strong>
   <%= image_tag @user.image.url %>
   <% end %>
+  <%= current_user.role_id %>
 </p>
 
 <% if current_user.role_id == 3 %>
