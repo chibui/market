@@ -20,6 +20,8 @@ gem 'coffee-rails', '~> 4.2'
 gem 'bootstrap-sass', '~> 3.3.6'
 # Use stripe for payment processing
 gem 'stripe'
+#  Use Cloudinary for image storage in the cloud
+gem 'cloudinary'
 # Use carrierwave for image uploading
 gem 'carrierwave', '~> 0.10.0'
 # Use mini_magick to resize images

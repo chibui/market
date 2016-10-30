@@ -1,0 +1,19 @@
+---
+development:
+  cloud_name: chibui
+  api_key: '641215193375326'
+  api_secret: 8XDgNSaxIYqvb9FphUn7IRbW0sw
+  enhance_image_tag: true
+  static_image_support: false
+production:
+  cloud_name: chibui
+  api_key: '641215193375326'
+  api_secret: 8XDgNSaxIYqvb9FphUn7IRbW0sw
+  enhance_image_tag: true
+  static_image_support: true
+test:
+  cloud_name: chibui
+  api_key: '641215193375326'
+  api_secret: 8XDgNSaxIYqvb9FphUn7IRbW0sw
+  enhance_image_tag: true
+  static_image_support: false

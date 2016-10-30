@@ -2,8 +2,8 @@
 
   <p>
     <strong>Image:</strong>
-    <% if @item.item_image.thumb.url.present? %>
-    <%= image_tag @item.item_image.thumb.url %>
+    <% if @item.item_image.url.present? %>
+    <%= image_tag @item.item_image.url %>
     <% end %>
   </p>
 
