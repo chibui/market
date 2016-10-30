@@ -6,7 +6,7 @@
 
           <div class="input-group">
             <%= form_tag(root_path, :method => "get", id: "search-form") do %>
-            <%= text_field_tag :search, params[:search], type:"text", class: "form-control",placeholder: "Search Items" %>
+            <%= text_field_tag :search, params[:search], type:"text", class: "form-control",placeholder: "Search Items or Item Origin" %>
             <span class="input-group-btn">
             <!-- <%= submit_tag "search" , class: "btn btn-default"%> -->
             <% end %>

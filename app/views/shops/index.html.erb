@@ -12,23 +12,29 @@
     <th>Email</th>
   </div>
   <div class="col-sm-3">
+    <th>View Store</th>
+  </div>
+  <div class="col-sm-3">
     <th></th>
   </div>
+
 </div>
 
 <% @users.each do |user| %>
   <div class="row">
     <% if user.role.name == "Seller" %>
+    <div class="col-sm-3">
     <%= user.name %>
+  </div>
+  <div class="col-sm-3">
     <%= user.email %>
+  </div>
+  <div class="col-sm-3">
     <%= link_to 'View', user %>
+  </div>
+  <div class="col-sm-3">
     <%= link_to 'Message me!', conversations_path(sender_id: current_user.id, recipient_id: user), method: 'post'%>
-    <div class="col-sm-3">
-    </div>
-    <div class="col-sm-3">
-    </div>
-    <div class="col-sm-3">
-    </div>
+  </div>
 
     <% end %>
   </div>

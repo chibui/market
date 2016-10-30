@@ -23,7 +23,6 @@ class Ability
         # rescope to just update one field
         can :manage, Order
 
-
       elsif user.regular?
         can :read, Item
         can :read, User
@@ -33,7 +32,6 @@ class Ability
         can :update, Order
         can :edit, Order
         can :manage, Order
-
 
       end
 
