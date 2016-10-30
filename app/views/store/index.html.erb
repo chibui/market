@@ -3,27 +3,21 @@
     <div class="col-sm-8">
       <h1>Items</h1>
 
-
-          <div class="input-group">
+          <div class="form-group has-feedback">
             <%= form_tag(root_path, :method => "get", id: "search-form") do %>
             <%= text_field_tag :search, params[:search], type:"text", class: "form-control",placeholder: "Search Items or Item Origin" %>
-            <span class="input-group-btn">
-            <!-- <%= submit_tag "search" , class: "btn btn-default"%> -->
             <% end %>
-            </span>
+            <i class="glyphicon glyphicon-search form-control-feedback text-muted"></i>
            </div>
 
-
-      <!-- <%= form_tag(root_path, :method => "get", id: "search-form") do %>
-        <%= text_field_tag :search, params[:search], placeholder: "Search Items" %>
-        <%= submit_tag "search" , class: "btn btn-default"%>
-      <% end %> -->
       <br>
 
       <% if @items.present? %>
         <%= render 'store/items' %>
       <% else %>
         <p>There are no items matching <%= params[:search] %></p>
+        <meta HTTP-EQUIV="REFRESH" content="3; url=/">
+
       <% end %>
 
       <% cache @items do %>  <!-- caching at store level -->
