@@ -1,46 +1,48 @@
 <div class="container">
 
-<p id="notice"><%= notice %></p>
+  <p id="notice"><%= notice %></p>
 
-<h1>Shops</h1>
+  <h1>Shops</h1>
 
-<div class="row">
-  <div class="col-sm-3">
-    <th>Shop Name</th>
-  </div>
-  <div class="col-sm-3">
-    <th>Email</th>
-  </div>
-  <div class="col-sm-3">
-    <th>View Store</th>
-  </div>
-  <div class="col-sm-3">
-    <th></th>
-  </div>
-
-</div>
-
-<% @users.each do |user| %>
   <div class="row">
-    <% if user.role.name == "Seller" %>
     <div class="col-sm-3">
-    <%= user.name %>
-  </div>
-  <div class="col-sm-3">
-    <%= user.email %>
-  </div>
-  <div class="col-sm-3">
-    <%= link_to 'View', user %>
-  </div>
-  <div class="col-sm-3">
-    <%= link_to 'Message me!', conversations_path(sender_id: current_user.id, recipient_id: user), method: 'post'%>
-  </div>
+      <th>Shop Name</th>
+    </div>
 
-    <% end %>
+    <div class="col-sm-3">
+      <th>Email</th>
+    </div>
+
+    <div class="col-sm-3">
+      <th>View Store</th>
+    </div>
+
+    <div class="col-sm-3">
+      <th></th>
+    </div>
   </div>
-<% end %>
-
-<br>
-
-<%= link_to 'Back', :back %>
+  <br>
+  
+  <% @users.each do |user| %>
+    <div class="row">
+      <% if user.role.name == "Seller" %>
+        <div class="col-sm-3">
+          <%= user.name %>
+        </div>
+        <div class="col-sm-3">
+          <%= user.email %>
+        </div>
+        <div class="col-sm-3">
+          <%= link_to 'View', user %>
+        </div>
+        <div class="col-sm-3">
+          <%= link_to 'Message me!', conversations_path(sender_id: current_user.id, recipient_id: user), method: 'post'%>
+        </div>
+      <% end %>
+    </div>
+  <% end %>
+  <br>
+  <%= link_to 'Back', :back %>
+  <br>
+  <br>
 </div>

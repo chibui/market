@@ -25,6 +25,9 @@
         </form>
         <% if user_signed_in?%>
         <li><%= link_to 'Shops', shops_url %></li>
+        <% else %>
+        <li><%= link_to 'FAQ', root_path %></li>
+        <li><%= link_to 'Partner', root_path %></li>
         <% end %>
         <li><% if user_signed_in? && current_user.role.name == 'Admin' %>
               <%= link_to 'Users', users_path %>

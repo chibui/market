@@ -1,100 +1,106 @@
-<p id="notice"><%= notice %></p>
+<div class="container">
 
-<% if current_user.role.name == 'Seller' %>
-<p>
-  <strong>Buyer:</strong>
-  <%= @order.user.name%>
-  <%= link_to 'Message me!', conversations_path(sender_id: current_user.id, recipient_id: @order.user.id), method: 'post' %>
-</p>
-<% end %>
+  <p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Order Date:</strong>
-  <%= @order.created_at.time.to_formatted_s(:db) %>
-</p>
-
-<p>
-  <strong>Shipped:</strong>
-  <% if current_user.role.name == 'Regular'||'Admin' %>
-    <% if @order.shipped == true %>
-    Order shipped
-    <% else %>
-    Processing
-    <% end %>
-  <% elsif current_user.role.name == 'Seller' %>
-    <% if @order.shipped == false %>
-      <%= link_to "Shipped", shipped_order_path(@order), :method => :put, remote: true %>
-    <% else %>
-    Yes
-    <% end %>
+  <% if current_user.role.name == 'Seller' %>
+  <p>
+    <strong>Buyer:</strong>
+    <%= @order.user.name%>
+    <%= link_to 'Message me!', conversations_path(sender_id: current_user.id, recipient_id: @order.user.id), method: 'post' %>
+  </p>
   <% end %>
-</p>
 
-<p>
-  <strong>Paid:</strong>
-  <% if current_user.role.name == 'Regular'||'Admin' %>
-    <% if @order.paid == true %>
-    Paid
-    <% else %>
-    Awaiting
+  <p>
+    <strong>Order Date:</strong>
+    <%= @order.created_at.time.to_formatted_s(:db) %>
+  </p>
+
+  <p>
+    <strong>Shipped:</strong>
+    <% if current_user.role.name == 'Regular'||'Admin' %>
+      <% if @order.shipped == true %>
+      Order shipped
+      <% else %>
+      Processing
+      <% end %>
+    <% elsif current_user.role.name == 'Seller' %>
+      <% if @order.shipped == false %>
+        <%= link_to "Shipped", shipped_order_path(@order), :method => :put, remote: true %>
+      <% else %>
+      Yes
+      <% end %>
     <% end %>
-  <% elsif current_user.role.name == 'Seller' %>
-    <% if @order.paid == false %>
-    Awaiting
-    <% else %>
-    Paid
+  </p>
+
+  <p>
+    <strong>Paid:</strong>
+    <% if current_user.role.name == 'Regular'||'Admin' %>
+      <% if @order.paid == true %>
+      Paid
+      <% else %>
+      Awaiting
+      <% end %>
+    <% elsif current_user.role.name == 'Seller' %>
+      <% if @order.paid == false %>
+      Awaiting
+      <% else %>
+      Paid
+      <% end %>
     <% end %>
-  <% end %>
-</p>
+  </p>
 
-<table>
-  <thead>
-    <tr>
-      <th>Item</th>
-      <th>Quantity</th>
-      <th>Business</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @order.line_items.each do |lineitem| %>
-      <% if (@order.user_id == current_user.id)||current_user.role.name == 'Admin' %>
+  <table class="table table-hover">
+    <thead>
       <tr>
-        <td><%= lineitem.item.name %></td>
-        <td><%= lineitem.quantity %></td>
-        <td><%= lineitem.item.user.name %></td>
-        <td><%= link_to 'Message me!', conversations_path(sender_id: current_user.id, recipient_id: lineitem.item.user.id), method: 'post'%></td>
+        <th>Item</th>
+        <th>Quantity</th>
+        <% if current_user.role.name == "Regular" %>
+        <th>Business</th>
+        <% end %>
+        <th colspan="2"></th>
       </tr>
+    </thead>
 
-      <% elsif lineitem.item.user.id == current_user.id %>
+    <tbody>
+      <% @order.line_items.each do |lineitem| %>
+        <% if (@order.user_id == current_user.id)||current_user.role.name == 'Admin' %>
         <tr>
           <td><%= lineitem.item.name %></td>
           <td><%= lineitem.quantity %></td>
+          <td><%= lineitem.item.user.name %></td>
+          <td><%= link_to 'Message me!', conversations_path(sender_id: current_user.id, recipient_id: lineitem.item.user.id), method: 'post'%></td>
         </tr>
+
+        <% elsif lineitem.item.user.id == current_user.id %>
+          <tr>
+            <td><%= lineitem.item.name %></td>
+            <td><%= lineitem.quantity %></td>
+          </tr>
+        <% end %>
+      <% end %>
+    </tbody>
+  </table>
+
+  <p>
+    <strong>Received:</strong>
+    <% if current_user.role.name == 'Regular' %>
+      <% if @order.received == false %>
+        <%= link_to "Received", received_order_path(@order), :method => :put, remote: true %>
+      <% else %>
+        <%= @order.updated_at.time.to_formatted_s(:db) %>
+      <% end %>
+    <% elsif current_user.role.name == 'Seller' %>
+      <% if @order.received == false %>
+      Waiting to receive
+      <% else %>
+      <%= @order.updated_at.time.to_formatted_s(:db) %>
       <% end %>
     <% end %>
-  </tbody>
-</table>
-
-<p>
-  <strong>Received:</strong>
-  <% if current_user.role.name == 'Regular' %>
-    <% if @order.received == false %>
-      <%= link_to "Received", received_order_path(@order), :method => :put, remote: true %>
-    <% else %>
-      <%= @order.updated_at.time.to_formatted_s(:db) %>
-    <% end %>
-  <% elsif current_user.role.name == 'Seller' %>
-    <% if @order.received == false %>
-    Waiting to receive
-    <% else %>
-    <%= @order.updated_at.time.to_formatted_s(:db) %>
-    <% end %>
-  <% end %>
 
 
-</p>
+  </p>
 
 
-<%= link_to 'Back', orders_path %>
+  <%= link_to 'Back', orders_path %>
+
+</div>

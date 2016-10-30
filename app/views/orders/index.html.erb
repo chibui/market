@@ -1,33 +1,37 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Orders</h1>
-    <table>
-      <thead>
-        <tr>
-          <th>Date</th>
-          <% if current_user.role.name == 'Seller' %>
+<div class="container">
+    
+  <h1>Orders</h1>
+      <table class="table table-bordered table-hover">
+        <thead>
+          <tr>
+            <th>Date</th>
+            <% if current_user.role.name == 'Seller' %>
+              <th>Buyer</th>
+            <% end %>
+            <th>Shipped</th>
+            <th>Received</th>
+            <% if current_user.role.name == 'Admin' %>
             <th>Buyer</th>
+            <% end %>
+            <th colspan="6"></th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <% if current_user.role.name ==  'Seller' %>
+            <%= render 'orders/seller_view' %>
+          <% elsif current_user.role.name == 'Regular' %>
+            <%= render 'orders/buyer_view' %>
+          <% elsif current_user.role.name == 'Admin' %>
+            <%= render 'orders/admin_view' %>
           <% end %>
-          <th>Shipped</th>
-          <th>Received</th>
-          <% if current_user.role.name == 'Admin' %>
-          <th>Buyer</th>
-          <% end %>
-          <th colspan="6"></th>
-        </tr>
-      </thead>
+        </tbody>
+      </table>
 
-      <tbody>
-        <% if current_user.role.name ==  'Seller' %>
-          <%= render 'orders/seller_view' %>
-        <% elsif current_user.role.name == 'Regular' %>
-          <%= render 'orders/buyer_view' %>
-        <% elsif current_user.role.name == 'Admin' %>
-          <%= render 'orders/admin_view' %>
-        <% end %>
-      </tbody>
-    </table>
+  <br>
 
-<br>
+  <%= link_to 'Back', root_path %>
 
-<%= link_to 'Back', root_path %>
+</div>
